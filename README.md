@@ -1,8 +1,13 @@
 # prototype-angularjs-play24-adminlte
 
-### Template
+### Project structure
 * **front-end**
-
+  * AngularJS
+  * Jquery
+  * Paper Pro - [Creative Tim](https://www.creative-tim.com/product/paper-dashboard-pro)
+* **back-end**
+  * Play framework 2
+  * AdminLTE - [AdminLTE.io](https://adminlte.io/)
 
 ### Versão
 * **1.0.0**
@@ -22,12 +27,12 @@
  - [x] Principais funcionalidades implementadas
  
 ## Ambiente de Produção e comandos
- - Criar distro universal -> sbt universal:package-zip-tarball
- - Criar distro universal -> sbt war
+ - Criar distro universal -> sbt universal:package-zip-tarball for instance services
+ - Criar distro universal -> sbt war for tomcatservers
   
 ### Licença
 * PlayFramework - [Apache 2 license](https://www.apache.org/licenses/LICENSE-2.0.html)
 * AngularJS - [MIT License](https://github.com/angular/angular.js/blob/master/LICENSE)
 
 ### Instituição
-Copyright ® 2020
+HR-Software - Copyright ® 2020
