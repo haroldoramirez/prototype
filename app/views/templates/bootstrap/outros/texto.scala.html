@@ -1,0 +1,15 @@
+@(field: Field, label: String = "", placeholder: String = "", help: String = "", tamanho: String = "")
+
+<div class="form-group @if(field.hasErrors) {has-error}">
+    <div class="col-md-@tamanho">
+        <label for="@field.id" class="control-label">@label</label>
+        <input type="text"
+               autocomplete="off"
+               class="form-control"
+               id="@field.id"
+               placeholder="@placeholder"
+               name="@field.name"
+               value="@field.value.getOrElse("")"/>
+        <span class="help-block"><small>@{field.error.map { error => error.message }}</small></span>
+    </div>
+</div>

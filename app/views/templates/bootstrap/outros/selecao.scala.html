@@ -1,0 +1,16 @@
+@import java.util
+@(field: Field, label: String = "", optionMap: util.Map[String, Boolean], isMultiple: Boolean, tamanho: String = "")
+
+<div class="form-group @if(field.hasErrors) {has-error}">
+    <div class="col-md-@tamanho">
+        <label for="@field.id" class="control-label">@label</label>
+        <select class="form-control" id="@field.id" name="@field.name">
+
+        @for((optionName, isSelected) <- optionMap) {
+            <option value="@optionName" @if(optionName == field.value.getOrElse("")) {selected}>@optionName</option>
+        }
+
+        </select>
+        <span class="help-block"><small>@{field.error.map { error => error.message }}</small></span>
+    </div>
+</div>

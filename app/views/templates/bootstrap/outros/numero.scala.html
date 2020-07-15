@@ -1,0 +1,25 @@
+@(field: Field, label: String = "", placeholder: String = "", help: String = "", tamanho: String = "")
+
+<div class="form-group @if(field.hasErrors) {has-error}">
+    <div class="col-sm-@tamanho">
+        <label for="@field.id" class="control-label">@label</label>
+        <input type="text"
+            onkeyup="somenteNumeros(this);"
+            class="form-control"
+            id="@field.id"
+            name="@field.name"
+            value="@field.value.getOrElse("")"
+            placeholder="@placeholder"/>
+        <span class="help-block"><small>@{field.error.map { error => error.message }}</small></span>
+    </div>
+</div>
+<script type="text/javascript">
+    function somenteNumeros(num) {
+        const er = /[^0-9.]/;
+        er.lastIndex = 0;
+        const campo = num;
+        if (er.test(campo.value)) {
+            campo.value = "";
+        }
+    }
+</script>

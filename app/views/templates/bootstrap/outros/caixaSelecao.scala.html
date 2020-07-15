@@ -1,0 +1,15 @@
+@(field: Field, nome: String = "", tamanho: String = "")
+
+<div class="form-group">
+    <div class="col-md-@tamanho text-center">
+        <div class="checkbox">
+            <label>
+                <input id="@field.id"
+                       type="checkbox"
+                       name="@field.name"
+                    @if(field.value.getOrElse("").equals("true")) { value="true" checked="checked"}>
+                <strong>@nome</strong>
+            </label>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+@(usuario: Usuario)
+
+@import helper._
+@import templates.bootstrap._
+
+@views.html.admin.main(Messages("app.title") + " | Detalhe do Usuário") {
+<div class="col-md-12">
+    <div class="page-header header-biogas">
+        <div class="btn-group btn-breadcrumb pull-right">
+            <a href="@routes.AdminController.painel()" class="btn btn-default"><i class="fa fa-home"></i></a>
+            <a href="@routes.UsuarioController.telaLista()" class="btn btn-default">Usuários</a>
+            <a class="btn btn-static">Detalhe</a>
+        </div>
+        <h2 class="font-style"><i class="fa fa-user" aria-hidden="true"></i> Detalhe do Usuário</h2>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Informações
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Opções <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="@routes.UsuarioController.telaLista()">Voltar</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="@routes.UsuarioController.telaEditar(usuario.getId)">Editar</a></li>
+                            <li role="separator" class="divider"></li>
+                            @if(usuario.isAtivo) {
+                            <li><a href="@routes.UsuarioController.bloquear(usuario.getId)">Bloquear</a></li>
+                            } else {
+                            <li><a href="@routes.UsuarioController.desbloquear(usuario.getId)">Desbloquear</a></li>
+                            }
+                            <li role="separator" class="divider"></li>
+                            <li><a data-toggle="modal" data-target=".bs-example-modal-sm" href="">Excluir</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive panel">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <td><i class="fa fa-user" aria-hidden="true"></i> Nome</td>
+                                <td>@usuario.getNome</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</td>
+                                <td>@usuario.getEmail</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-check" aria-hidden="true"></i> Status</td>
+                                @if(usuario.isAtivo) {
+                                <td class="text-success">Ativo</td>
+                                } else {
+                                <td class="text-danger">Bloqueado</td>
+                                }
+
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-address-card" aria-hidden="true"></i> Perfil</td>
+                                @if(usuario.isAdmin) {
+                                    <td><span class="label label-danger">Administrador</span></td>
+                                }
+                                @if(usuario.isGerente) {
+                                    <td><span class="label label-warning">Gerente</span></td>
+                                }
+                                @if(usuario.isSupervisor){
+                                    <td><span class="label label-primary">Supervisor</span></td>
+                                }
+                                @if(usuario.isUsuario){
+                                    <td><span class="label label-default">Usuário</span></td>
+                                }
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-user-plus" aria-hidden="true"></i> Data de Cadastro</td>
+                                <td>
+                                    @usuario.getDataCadastro.format("dd MMMM yyyy")
+                                </td>
+                            </tr>
+                            @if(usuario.getDataAlteracao != null){
+                            <tr>
+                                <td><i class="fa fa-calendar" aria-hidden="true"></i> Data de Alteração</td>
+                                <td>
+                                    @usuario.getDataAlteracao.format("dd MMMM yyyy")
+                                </td>
+                            </tr>
+                            }
+                            <tr>
+                                <td><i class="fa fa-clock-o" aria-hidden="true"></i> Último Acesso</td>
+                                <td>
+                                    @usuario.getUltimoAcesso.getTime.format("dd MMMM yyyy - HH:mm:ss")
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">@Messages("app.title")</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Deseja remover o usuário <b>"@usuario.getNome"</b>?</p>
+            </div>
+            <div class="modal-footer">
+                @form(routes.UsuarioController.remover(usuario.getId)) {
+                    <input id="btnRemover" type="submit" value="Remover" class="btn btn-danger">
+                }
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

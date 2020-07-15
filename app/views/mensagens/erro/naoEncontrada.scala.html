@@ -1,0 +1,62 @@
+@(url: String)
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" sizes="192x192" href="@routes.Assets.versioned("images/favicon.png")">
+    <link rel="apple-touch-icon-precomposed" href="@routes.Assets.versioned("images/favicon.png")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("bootstrap-3.3.7/dist/css/bootstrap.min.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("bower_components/font-awesome/css/font-awesome.min.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/backend/material/fonts.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/backend/custom/style.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/backend/custom/form-elements.css")">
+    <title>@Messages("app.title")</title>
+</head>
+<body>
+@*top content*@
+<div class="top-content">
+
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1><strong>@Messages("app.title")</strong></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-top">
+                    <div class="form-top-messages">
+                        <p align="center" class="error">Não encontrado -> "@url"</p>
+                    </div>
+                </div>
+                <div class="form-bottom-messages">
+                    <a class="btn" href="@routes.HomeController.main()">voltar a página inicial</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <br>
+                    <footer>
+                        <a type="reset" data-toggle="tooltip" title="voltar a página inicial" data-placement="bottom" href="@routes.HomeController.main()"><p class="footer-messages">&copy; <script>document.write(new Date().getFullYear())</script> - Centro Internacional de Enegias Renováveis</p></a>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="@routes.Assets.versioned("bower_components/jquery/dist/jquery.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("bootstrap-3.3.7/dist/js/bootstrap.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.versioned("bower_components/jquery-backstretch/jquery.backstretch.min.js")" type="text/javascript"></script>
+<script>
+        /*
+         Fullscreen background
+         */
+         $.backstretch("@routes.Assets.versioned("images/backend/background.webp")");
+</script>
+</body>
+</html>
