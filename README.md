@@ -1,4 +1,4 @@
-# prototype-angularjs-play24-adminlte
+# prototype-angularjs-play24-adminlte-java
 
 ### Project structure
 * **front-end**
